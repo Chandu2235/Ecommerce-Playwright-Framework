@@ -1,6 +1,8 @@
 <img width="1918" height="1016" alt="image" src="https://github.com/user-attachments/assets/66d357da-b80f-4c44-b56a-e45b8c9bbc64" />
+
 <img width="1597" height="751" alt="image" src="https://github.com/user-attachments/assets/163a3ecf-a74f-4562-b315-e4eda67ea6fe" />
 
+<img width="1918" height="1030" alt="image" src="https://github.com/user-attachments/assets/410d9b54-4eac-431d-9e49-20c5b379d598" />
 
 # Sauce Demo Test Automation Framework
 
