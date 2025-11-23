@@ -5,6 +5,7 @@
 # Sauce Demo Test Automation Framework
 
 This is a Playwright-based test automation framework for testing the Sauce Demo e-commerce application.
+https://www.saucedemo.com/
 
 ## Setup
 
