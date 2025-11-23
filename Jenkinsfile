@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {
-        nodejs "NodeJS-20"   // Node 20.19.2 (configured in Jenkins Tools)
+        nodejs "NodeJS-20"
     }
 
     environment {
@@ -108,7 +108,8 @@ pipeline {
                 reportFiles: 'index.html',
                 reportName: 'Playwright Report',
                 keepAll: true,
-                alwaysLinkToLastBuild: true
+                alwaysLinkToLastBuild: true,
+                allowMissing: true    // <-- REQUIRED FIX
             ])
 
             cleanWs()
