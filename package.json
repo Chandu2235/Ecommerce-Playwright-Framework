@@ -3,10 +3,17 @@
     "test": "playwright test",
     "test:debug": "playwright test --debug",
     "test:headed": "playwright test --headed",
+    "test:ui": "playwright test tests/ui",
+    "test:e2e": "playwright test tests/e2e",
+    "test:api": "playwright test tests/api",
     "test:chrome": "playwright test --project=chromium",
     "test:firefox": "playwright test --project=firefox",
     "test:webkit": "playwright test --project=webkit",
-    "test:report": "playwright show-report"
+    "test:mobile": "playwright test --project='Mobile Chrome'",
+    "test:report": "playwright show-report",
+    "test:ci": "playwright test --reporter=junit",
+    "lint": "echo 'Add your linting command here'",
+    "type-check": "echo 'Add your type checking command here'"
   },
   "devDependencies": {
     "@playwright/test": "^1.56.1"

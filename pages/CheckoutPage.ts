@@ -2,29 +2,49 @@ import { BasePage } from './BasePage';
 import { Page } from '@playwright/test';
 
 export class CheckoutPage extends BasePage {
-  readonly firstNameInput = 'input[name="firstName"]';
-  readonly lastNameInput = 'input[name="lastName"]';
-  readonly emailInput = 'input[name="email"]';
-  readonly addressInput = 'input[name="address"]';
-  readonly completeOrderButton = 'button[data-testid="complete-order"]';
-  readonly successMessage = '.success-message';
+  // Sauce Demo checkout page selectors
+  readonly firstNameInput = '[data-test="firstName"]';
+  readonly lastNameInput = '[data-test="lastName"]';
+  readonly postalCodeInput = '[data-test="postalCode"]';
+  readonly continueButton = '[data-test="continue"]';
+  readonly finishButton = '[data-test="finish"]';
+  readonly cancelButton = '[data-test="cancel"]';
+  readonly errorMessage = '[data-test="error"]';
+  readonly completeHeader = '.complete-header';
+  readonly summaryTotal = '.summary_total_label';
 
   constructor(page: Page) {
     super(page);
   }
 
-  async fillShippingDetails(firstName: string, lastName: string, email: string, address: string) {
+  async fillCheckoutInformation(firstName: string, lastName: string, postalCode: string) {
     await this.fill(this.firstNameInput, firstName);
     await this.fill(this.lastNameInput, lastName);
-    await this.fill(this.emailInput, email);
-    await this.fill(this.addressInput, address);
+    await this.fill(this.postalCodeInput, postalCode);
   }
 
-  async completeOrder() {
-    await this.click(this.completeOrderButton);
+  async continueToOverview() {
+    await this.click(this.continueButton);
   }
 
-  async getSuccessMessage() {
-    return await this.getText(this.successMessage);
+  async finishOrder() {
+    await this.click(this.finishButton);
+  }
+
+  async cancelCheckout() {
+    await this.click(this.cancelButton);
+  }
+
+  async getErrorMessage() {
+    return await this.getText(this.errorMessage);
+  }
+
+  async isOrderComplete() {
+    return await this.page.isVisible(this.completeHeader);
+  }
+
+  async getTotalAmount() {
+    const totalText = await this.getText(this.summaryTotal);
+    return parseFloat(totalText.replace(/[^0-9.]/g, ''));
   }
 }

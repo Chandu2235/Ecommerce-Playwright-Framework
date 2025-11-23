@@ -2,31 +2,45 @@ import { BasePage } from './BasePage';
 import { Page } from '@playwright/test';
 
 export class ProductPage extends BasePage {
-  readonly productTitle = 'h1[data-testid="product-title"]';
-  readonly addToCartButton = 'button[data-testid="add-to-cart"]';
-  readonly quantityInput = 'input[data-testid="quantity"]';
-  readonly price = '[data-testid="product-price"]';
+  // Sauce Demo product detail page selectors
+  readonly productName = '.inventory_details_name';
+  readonly productDescription = '.inventory_details_desc';
+  readonly productPrice = '.inventory_details_price';
+  readonly addToCartButton = '[data-test*="add-to-cart"]';
+  readonly removeButton = '[data-test*="remove"]';
+  readonly backButton = '[data-test="back-to-products"]';
+  readonly productImage = '.inventory_details_img';
 
   constructor(page: Page) {
     super(page);
   }
 
-  async viewProduct(productId: string) {
-    await this.goto(`/product/${productId}`);
+  async getProductName() {
+    return await this.getText(this.productName);
   }
 
-  async getProductTitle() {
-    return await this.getText(this.productTitle);
+  async getProductDescription() {
+    return await this.getText(this.productDescription);
   }
 
-  async getPrice() {
-    return await this.getText(this.price);
+  async getProductPrice() {
+    const priceText = await this.getText(this.productPrice);
+    return parseFloat(priceText.replace('$', ''));
   }
 
-  async addToCart(quantity: number = 1) {
-    if (quantity > 1) {
-      await this.fill(this.quantityInput, quantity.toString());
-    }
+  async addToCart() {
     await this.click(this.addToCartButton);
+  }
+
+  async removeFromCart() {
+    await this.click(this.removeButton);
+  }
+
+  async goBackToProducts() {
+    await this.click(this.backButton);
+  }
+
+  async isProductImageDisplayed() {
+    return await this.page.isVisible(this.productImage);
   }
 }

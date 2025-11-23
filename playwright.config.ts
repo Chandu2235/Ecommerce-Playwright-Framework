@@ -22,10 +22,11 @@ export default defineConfig({
 
   // Shared settings for webServer
   use: {
-    baseURL: 'http://localhost:3000',
+    baseURL: process.env.BASE_URL || 'https://www.saucedemo.com/',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
+    headless: process.env.HEADLESS === 'true',
   },
 
   // Projects for different browsers
@@ -48,10 +49,10 @@ export default defineConfig({
     },
   ],
 
-  // Start dev server before running tests
-  webServer: {
-    command: 'npm run dev',
-    url: 'http://localhost:3000',
-    reuseExistingServer: !process.env.CI,
-  },
+  // Remove webServer config since we're testing external site
+  // webServer: {
+  //   command: 'npm run dev',
+  //   url: 'http://localhost:3000',
+  //   reuseExistingServer: !process.env.CI,
+  // },
 });
