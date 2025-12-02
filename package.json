@@ -16,6 +16,7 @@
     "type-check": "echo 'Add your type checking command here'"
   },
   "devDependencies": {
-    "@playwright/test": "^1.56.1"
+    "@playwright/test": "^1.56.1",
+    "@types/node": "^24.10.1"
   }
 }
